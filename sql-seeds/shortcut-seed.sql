@@ -56,14 +56,14 @@ VALUES ("Steve", "Rogers", 1, null),
 ("Selina", "Kyle", 7, null);
 
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
-VALUES ("Farah", "McCall", 4, 3), 
-("Dominic", "Velasquez", 8, 7), 
-("Adelina", "Stephenson", 8, 7), 
-("Tehya", "Brandt", 4, 3), 
+VALUES ("Farah", "McCall", 4, 2), 
+("Dominic", "Velasquez", 8, 4), 
+("Adelina", "Stephenson", 8, 4), 
+("Tehya", "Brandt", 4, 2), 
 ("Ami", "O'Brien", 2, 1),
-("Indigo", "Guzman", 6, 5),
-("Hughie", "Osborne", 8, 7),
-("Clyde", "Nash", 6, 5),
+("Indigo", "Guzman", 6, 3),
+("Hughie", "Osborne", 8, 4),
+("Clyde", "Nash", 6, 3),
 ("Leah", "Macleod", 2, 1);
 
 -- RUN QUERY TO SHOW ALL 3 TABLES/CONFIRM DATA
