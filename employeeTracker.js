@@ -30,11 +30,14 @@ inquirer.prompt({
             type: "list",
             name: "menuChoice",
             message: "What would you like to do?",
-            choices: ["View all Employees"]
+            choices: ["View all Employees", "Add Employee"]
         }).then(res => {
             switch (res.menuChoice) {
                 case "View all Employees":
                     viewAll();
+                    break;
+                case "Add Employee":
+                    addEmployee();
                     break;
             };
         });
@@ -49,10 +52,73 @@ inquirer.prompt({
         query += "INNER JOIN department ON department.id = role.department_id "
         query += "ORDER BY employee.id;"
         connection.query(query, (err, res) => {
+            if (err) throw err;
             console.log();
             console.table(res);
+            console.log();
         })
+        startMenu();
+        // connection.end();
+    }
 
-        connection.end();
+    function listRoles() {
+        let query = "SELECT title FROM role"
+        connection.query(query, (err, res) => {
+            if (err) throw err;
+            var rolesArr = []
+            for (var i=0; i < res.length; i++) {
+                choices.push(res[i].title)
+            }
+            return rolesArr
+        })
+    }
+
+    function listManagers() {
+        let query = "SELECT * FROM employee WHERE manager_id IS NULL"
+        connection.query(query, (err, res) => {
+            if (err) throw err;
+            let managerArr = [];
+            for (var i=0;i < res.length; i++) {
+                managerArr.push(res[i].first_name + " " + res[i].last_name)
+            }
+            return managerArr
+        });
+    }
+
+    function addEmployee() {
+        var roleArr = listRoles()
+        var managerChoices = listManagers()
+        console.log(managerChoices)
+        connection.end;
+        // inquirer.prompt([
+        //     {
+        //         type: "input",
+        //         name: "firstName",
+        //         message: "Please enter employee's First Name: "
+        //     },
+        //     {
+        //         type: "input",
+        //         name: "lastName",
+        //         message: "Please enter employee's Last Name: "
+        //     },
+        //     {
+        //         type: "input",
+        //         name: "role",
+        //         message: "Please enter employee's Role: "
+        //     },
+        //     {
+        //         type: "list",
+        //         name: "manager",
+        //         message: "Please choose this employee's manager",
+        //         choices: managerChoices
+        //     }
+        // ]).then(result => {
+        //     // let query = "INSERT INTO employee"
+        //     // connection.query(query)
+        //     console.log("Yuh I'll add this in a minute")
+        //     console.log(result)
+
+        //     startMenu();
+        // })
     }
 })
