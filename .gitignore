@@ -1,4 +1,5 @@
 node_modules/
 pseudocode.txt
+
+# a Saved Queries schema file can be used to test queries in workbench rather than terminal
 saved-queries.sql
-employee_tracker.js
